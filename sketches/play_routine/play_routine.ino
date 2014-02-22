@@ -54,8 +54,19 @@
   float x_total = 0;                  // the running total
   float x_average = 0;                // the average
 
+// Output
+int redPin = 9;   // Red LED,   connected to digital pin 9
+int grnPin = 10;  // Green LED, connected to digital pin 10
+int bluPin = 11;  // Blue LED,  connected to digital pin 11
+
+
 void setup()
 {
+  
+  pinMode(redPin, OUTPUT);   // sets the pins as output
+  pinMode(grnPin, OUTPUT);   
+  pinMode(bluPin, OUTPUT); 
+  
   Serial.begin(57600);
   Serial.println("MMA8452 Basic Example");
 
@@ -73,7 +84,12 @@ void setup()
 
 void loop()
 {  
- 
+
+
+   //  analogWrite(redPin, 0);   // Write current values to LED pins
+   // analogWrite(grnPin, 0);      
+   // analogWrite(bluPin, 0); 
+  
  
   int accelCount[3];  // Stores the 12-bit signed value
   readAccelData(accelCount);  // Read the x/y/z adc values
@@ -142,14 +158,23 @@ void loop()
   
   if ( y_average >= 9.5 ) {
     Serial.println("SIDE A UP");
+         analogWrite(redPin, 100);   // Write current values to LED pins
+    analogWrite(grnPin, 0);      
+    analogWrite(bluPin, 0); 
   }
 
   if ( y_average <= -9.0 ) {
     Serial.println("SIDE B UP");
+             analogWrite(redPin, 0);   // Write current values to LED pins
+    analogWrite(grnPin, 100);      
+    analogWrite(bluPin, 0); 
   }
 
   if ( z_average >= 9.5 ) {
     Serial.println("SIDE C UP");
+                 analogWrite(redPin, 0);   // Write current values to LED pins
+    analogWrite(grnPin, 0);      
+    analogWrite(bluPin, 100); 
   }
 
   if ( z_average <= -9.0 ) {
