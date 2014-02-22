@@ -40,10 +40,19 @@
 // respond to the input.  Using a constant rather than a normal variable lets
 // use this value to determine the size of the readings array.
   const int numReadings = 2;
-  int readings[numReadings];      // the readings from the analog input
-  int index = 0;                  // the index of the current reading
-  float total = 0;                  // the running total
-  float average = 0;                // the average
+  int index = 0;                  // the index of the current reading  
+  
+  int y_readings[numReadings];      // the readings from the analog input
+  float y_total = 0;                  // the running total
+  float y_average = 0;                // the average
+
+  int z_readings[numReadings];      // the readings from the analog input
+  float z_total = 0;                  // the running total
+  float z_average = 0;                // the average
+
+  int x_readings[numReadings];      // the readings from the analog input
+  float x_total = 0;                  // the running total
+  float x_average = 0;                // the average
 
 void setup()
 {
@@ -54,8 +63,11 @@ void setup()
 
   initMMA8452(); //Test and intialize the MMA8452
   
-  for (int thisReading = 0; thisReading < numReadings; thisReading++)
-    readings[thisReading] = 0;          
+  for (int thisReading = 0; thisReading < numReadings; thisReading++) {
+    y_readings[thisReading] = 0;
+    z_readings[thisReading] = 0;    
+    x_readings[thisReading] = 0;    
+  }
   
 }
 
@@ -79,7 +91,7 @@ void loop()
 //    Serial.print(accelG[i], 4);  // Print g values
 //    Serial.print("\t");  // tabs in between axes
   }
-  Serial.println();
+//  Serial.println();
 
   //float averages[3];
   //float t[3];
@@ -90,11 +102,28 @@ void loop()
 
 
   // subtract the last reading:
-  total= total - readings[index];        
+  y_total= y_total - y_readings[index];        
   // read from the sensor:  
-  readings[index] = accelG[1];
+  y_readings[index] = accelG[1];
   // add the reading to the total:
-  total= total + readings[index];      
+  y_total= y_total + y_readings[index];      
+
+
+  // subtract the last reading:
+  z_total= z_total - z_readings[index];        
+  // read from the sensor:  
+  z_readings[index] = accelG[2];
+  // add the reading to the total:
+  z_total= z_total + z_readings[index];      
+
+  // subtract the last reading:
+  x_total= x_total - x_readings[index];        
+  // read from the sensor:  
+  x_readings[index] = accelG[0];
+  // add the reading to the total:
+  x_total= x_total + x_readings[index];      
+
+
   // advance to the next position in the array:  
   index = index + 1;                    
 
@@ -104,17 +133,35 @@ void loop()
     index = 0;                          
 
   // calculate the average:
-  average = total / numReadings;        
+  y_average = y_total / numReadings;        
+  z_average = z_total / numReadings;        
+  x_average = x_total / numReadings;        
 //  Serial.println(total);     
 //  Serial.println(numReadings);
 //  Serial.println(average);     
   
-  if ( average >= 9.5 ) {
+  if ( y_average >= 9.5 ) {
     Serial.println("SIDE A UP");
   }
 
-  if ( average <= -9.5 ) {
+  if ( y_average <= -9.0 ) {
     Serial.println("SIDE B UP");
+  }
+
+  if ( z_average >= 9.5 ) {
+    Serial.println("SIDE C UP");
+  }
+
+  if ( z_average <= -9.0 ) {
+    Serial.println("SIDE D UP");
+  }
+
+  if ( x_average >= 9.0 ) {
+    Serial.println("SIDE E UP");
+  }
+
+  if ( x_average <= -9.0 ) {
+    Serial.println("SIDE F UP");
   }
 
 
