@@ -104,10 +104,10 @@ void loop()
   // Print out values
   for (int i = 0 ; i < 3 ; i++)
   {
-//    Serial.print(accelG[i], 4);  // Print g values
-//    Serial.print("\t");  // tabs in between axes
+    Serial.print(accelG[i], 4);  // Print g values
+    Serial.print("\t");  // tabs in between axes
   }
-//  Serial.println();
+  Serial.println();
 
   //float averages[3];
   //float t[3];
@@ -158,35 +158,44 @@ void loop()
   
   if ( y_average >= 9.5 ) {
     Serial.println("SIDE A UP");
-         analogWrite(redPin, 100);   // Write current values to LED pins
+    analogWrite(redPin, 100);   // Write current values to LED pins
     analogWrite(grnPin, 0);      
     analogWrite(bluPin, 0); 
   }
 
   if ( y_average <= -9.0 ) {
     Serial.println("SIDE B UP");
-             analogWrite(redPin, 0);   // Write current values to LED pins
+    analogWrite(redPin, 0);   // Write current values to LED pins
     analogWrite(grnPin, 100);      
     analogWrite(bluPin, 0); 
   }
 
   if ( z_average >= 9.5 ) {
     Serial.println("SIDE C UP");
-                 analogWrite(redPin, 0);   // Write current values to LED pins
+    analogWrite(redPin, 0);   // Write current values to LED pins
     analogWrite(grnPin, 0);      
     analogWrite(bluPin, 100); 
   }
 
   if ( z_average <= -9.0 ) {
     Serial.println("SIDE D UP");
+    analogWrite(redPin, 50);   // Write current values to LED pins
+    analogWrite(grnPin, 50);      
+    analogWrite(bluPin, 0); 
   }
 
   if ( x_average >= 9.0 ) {
     Serial.println("SIDE E UP");
+    analogWrite(redPin, 0);   // Write current values to LED pins
+    analogWrite(grnPin, 50);      
+    analogWrite(bluPin, 50); 
   }
 
   if ( x_average <= -9.0 ) {
     Serial.println("SIDE F UP");
+    analogWrite(redPin, 50);   // Write current values to LED pins
+    analogWrite(grnPin, 0);      
+    analogWrite(bluPin, 50); 
   }
 
 
