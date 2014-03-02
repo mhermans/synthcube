@@ -2,6 +2,8 @@
 
 ## 3D cube design
 
+* [Lockable Box Cube v4](https://www.youmagine.com/designs/lockable-box-cube-v4), [Making a good cube](http://flashgamer.com/arduino/comments/making-a-good-cube), [color cube fades](http://www.flickr.com/photos/flashmagazine/sets/72157629907398057/detail/)
+
 Thingverse?
 
 ## Input
@@ -21,6 +23,13 @@ The accelerometer can provide different types of input:
 * Freefall detection
 
 Currently freefall detection is used to toggle on/off (LED) while orientation is used to transition/set the color of the LED.
+
+### Sensor fusion
+
+Articles:
+
+* [Kalman filter vs Complementary filter](http://robottini.altervista.org/kalman-filter-vs-complementary-filter)
+* [Reading a IMU Without Kalman: The Complementary Filter ](http://www.pieter-jan.com/node/11)
 
 
 ### Interesting ICs
@@ -47,6 +56,11 @@ Arduino libraries: included in [Pololu-library](https://github.com/pololu/lsm303
 
 Latest version of this line is [LSM303D](http://www.pololu.com/product/2127), which is included in the Pololu library, but not yet easy/cheap to source.
 
+## Output: light
+
+* [3mm LED diffuser (Cube and Rouded)](http://www.thingiverse.com/thing:180982)
+
+## Output: sound
 
 
 ## Similar projects
